@@ -5,6 +5,7 @@
 #include "test_fixmath.h"
 #include "fixmath.h"
 #include "fixmath_precision.h"
+#include "test_trig.h"
 
 void fixmath_unity_tests(void){
     UNITY_BEGIN();
@@ -19,12 +20,17 @@ void fixmath_unity_tests(void){
     RUN_TEST(test_fixmath_sqrt);
     RUN_TEST(test_fixmath_div);
 
+    RUN_TEST(fixmath_test_sine);
+    RUN_TEST(fixmath_test_cosine);
+
     UNITY_END();
 }
+
 
 void run_tests(void){
     fixmath_unity_tests();
     fixmath_run_precision_analysis();
+
 }
 
 
