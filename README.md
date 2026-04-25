@@ -22,7 +22,7 @@ A project focused on offloading spatial navigation logic to a hardware cluster. 
 - [ ] **Hardware Porting**: Port and optimize the Boids logic for the CH32V003 (RISC-V). This includes memory footprint reduction (fitting into 2KB RAM) and offloading specific Quadtree leaf calculations to the cluster nodes.
 - [ ] **Hardware**: Design a KiCad schematic for the cluster backplane and power delivery.
 
-**Update 1: Deterministic Fixed-Point Arithmetic**
+## **Update 1: Deterministic Fixed-Point Arithmetic**
 
 ### Overview
 To ensure high performance on MCUs without a Hardware Floating Point Unit (FPU) and to maintain identical behavior across different architectures (ESP32 vs. CH32), I implemented a custom Q16.16 fixed-point arithmetic library.
