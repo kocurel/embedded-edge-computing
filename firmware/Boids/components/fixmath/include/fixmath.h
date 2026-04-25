@@ -1,6 +1,7 @@
 #ifndef FIXMATH_H
 #define FIXMATH_H
 
+#include "assert.h"
 #include <stdint.h>
 
 // Arithemtic bitshift assert to make sure signed shifting works
@@ -23,32 +24,54 @@ typedef int32_t fp_t;
 #define FP_HALF        32768L   // 0.5
 #define FP_EPSILON     1L       // Smallest possible fraction 
 
-// Calculates sum of two Q16.16 fixed-point numbers
-// inlining to avoid function call overhead cost
+/**
+ * @brief Adds two Q16.16 numbers.
+ * @note This function has no overflow check.
+ */
 static inline fp_t fixmath_add(fp_t a, fp_t b){
     return a + b;
 }
-// Calculates difference of two Q16.16 fixed-point numbers
-// inlining to avoid function call overhead cost
+
+/**
+ * @brief Subtracts b from a (Q16.16).
+ * @note This function has no overflow check.
+ */
 static inline fp_t fixmath_sub(fp_t a, fp_t b){
     return a - b;
 }
 
-// Calculates product of two Q16.16 fixed-point numbers
-// inlining to avoid function call overhead cost
+/**
+ * @brief Multiplies two Q16.16 numbers with rounding and saturation.
+ * @note Uses rounding towards positive infinity (adds 0.5 before shift)
+ */
 static inline fp_t fixmath_mul(fp_t a, fp_t b){
-    const int64_t product = (int64_t)a * (int64_t)b;
-    // Add 0.5 to round the result
-    return (fp_t)((product + 32768) >> 16);
+    const int64_t product = (int64_t)a * b;
+    // Add 0.5 to round the result towards positive infinity
+    int64_t result = (product + 32768) >> 16;
+
+    if (result > INT32_MAX) return INT32_MAX;
+    if (result < INT32_MIN) return INT32_MIN;
+
+    return (fp_t)result;
 }
 
-// Calculates absolute value of a Q16.16 fixed-point number
-// Assumes input is not INT32_MIN to avoid overflow.
+/**
+ * @brief The absolute value of a Q16.16 fixed-point number
+ * @note Assumes input is not INT32_MIN.
+ */ 
 static inline fp_t fixmath_abs(fp_t a){
     return (a < 0) ? (-a) : a;
 }
 
+/**
+ * @brief Divides a by b (Q16.16)
+ * @note ESP32 has no hardware 64-bit division 
+ * so it results in a call to gcc's __divdi3.
+ * 
+ * @warning *Do not use division unless it's necessary.*
+ */
 static inline fp_t fixmath_div(fp_t a, fp_t b){
+    assert(b != 0);
     if (b == 0) return 0;
 
     // Scale the numerator to 64-bit to preserve fractional parts 

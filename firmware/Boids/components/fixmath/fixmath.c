@@ -1,9 +1,9 @@
 #include "fixmath.h"
 
 fp_t fixmath_sqrt(fp_t a) {
+    assert(a >= 0);
     // Return 0 for negative numbers as square root is undefined in real numbers
-    if (a < 0) return 0; 
-    if (a == 0) return 0;
+    if (a <= 0) return 0; 
 
     uint32_t op = (uint32_t)a;
     uint32_t res = 0;

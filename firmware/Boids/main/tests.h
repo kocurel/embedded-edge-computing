@@ -4,8 +4,9 @@
 #include "unity.h"
 #include "test_fixmath.h"
 #include "fixmath.h"
+#include "fixmath_precision.h"
 
-void run_tests(void){
+void fixmath_unity_tests(void){
     UNITY_BEGIN();
     
     RUN_TEST(test_fixmath_int_to_fp);
@@ -13,11 +14,19 @@ void run_tests(void){
     RUN_TEST(test_fixmath_add);
     RUN_TEST(test_fixmath_sub);
     RUN_TEST(test_fixmath_wrap_around);
+    RUN_TEST(test_fixmath_mult_underflow);
     RUN_TEST(test_fixmath_mul);
     RUN_TEST(test_fixmath_sqrt);
     RUN_TEST(test_fixmath_div);
 
     UNITY_END();
 }
+
+void run_tests(void){
+    fixmath_unity_tests();
+    fixmath_run_precision_analysis();
+}
+
+
 
 #endif // TESTS_H
