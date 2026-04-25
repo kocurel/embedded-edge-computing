@@ -4,7 +4,7 @@ A project focused on offloading spatial navigation logic to a hardware cluster. 
 
 **Current Goals**
 
-- **Dual-Core Concurrency**: Implement the Boids algorithm in C, utilizing FreeRTOS tasks to manage flock logic and networking separately.
+- **Dual-Core Concurrency**: Implement the Boids algorithm in C and run it concurrently on two ESP32 cores.
     
 - **Networking**: Stream real-time agent data over UDP to a PC for visualization (SFML).
     
