@@ -46,16 +46,14 @@ static inline angle_t rad_to_BAM(fp_t radians) {
 }
 
 /**
- * @brief Calculates the sine of an angle using a lookup table and linear interpolation.
+ * @brief Calculates the sine of an angle using a lookup table.
  * @param a Angle in BAM format (0-65535).
- * @return fp_t Result in Q16.16 format.
  */
 fp_t fixmath_sin(angle_t a);
 
 /**
  * @brief Calculates the cosine of an angle.
  * @param a Angle in BAM format.
- * @return fp_t Result in Q16.16 format.
  */
 fp_t fixmath_cos(angle_t a);
 
