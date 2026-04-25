@@ -24,4 +24,8 @@ A project focused on offloading spatial navigation logic to a hardware cluster. 
 
 **Update 1: Deterministic Fixed-Point Arithmetic**
 
+### Overview
 To ensure high performance on MCUs without a Hardware Floating Point Unit (FPU) and to maintain identical behavior across different architectures (ESP32 vs. CH32), I implemented a custom Q16.16 fixed-point arithmetic library.
+
+### Technical debt
+Current sine implementation uses a 1024-entry LUT (4KB). While acceptable for ESP32, the port to CH32 will evaluate the trade-off between Flash usage (large LUT) vs. CPU cycles (small LUT + Linear Interpolation).
