@@ -12,6 +12,15 @@ A project focused on offloading spatial navigation logic to a hardware cluster. 
     
 - **Algorithmic Optimization**: Implement a Quad Tree spatial partitioning structure enabling efficient distribution of computation across the RISC-V cluster.
     
+**Roadmap**
+- [X] **Core Math**: Implement a custom Q16.16 fixed-point library (Deterministic behavior across RISC-V and Xtensa).
+- [ ] **Swarm Logic**: Implement the Boids algorithm (Cohesion, Alignment, Separation).
+- [ ] **Networking**: Establish UDP telemetry between ESP32 and PC (SFML-based HMI).
+- [ ] **Visualizer**: Create an SFML C++ application to render real-time Boid positions and telemetry.
+- [ ] **Spatial Optimization**: Implement a Quadtree data structure for efficient neighbor searching (O(nlogn)).
+- [ ] **Inter-chip Comm:** Design and implement a lightweight SPI protocol for ESP32 (Master) to CH32 (Cluster) communication.
+- [ ] **Hardware Porting**: Port and optimize the Boids logic for the CH32V003 (RISC-V). This includes memory footprint reduction (fitting into 2KB RAM) and offloading specific Quadtree leaf calculations to the cluster nodes.
+- [ ] **Hardware**: Design a KiCad schematic for the cluster backplane and power delivery.
 
 **Update 1: Deterministic Fixed-Point Arithmetic**
 
