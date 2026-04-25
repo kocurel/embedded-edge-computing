@@ -1,4 +1,4 @@
-## Distributed Swarm Simulation: ESP32 & RISC-V Cluster
+## WIP: Distributed Swarm Simulation: ESP32 & RISC-V Cluster
 
 A project focused on offloading spatial navigation logic to a hardware cluster. The core idea is to simulate "autonomous agents" (Boids) where the heavy lifting is done by low-power microcontrollers.
 
